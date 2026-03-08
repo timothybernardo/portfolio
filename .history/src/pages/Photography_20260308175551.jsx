@@ -4,14 +4,12 @@ import { serif } from "../theme";
 import photos from "../data/photos";
 import PhotoCard from "../components/PhotoCard";
 
-const categories = ["All", ...[...new Set(photos.map((p) => p.cat))].sort()];
+const categories = ["All", ...new Set(photos.map((p) => p.cat))];
 const PER_PAGE = 12;
 
 function Gallery({ theme }) {
   const [filter, setFilter] = useState("All");
   const [page, setPage] = useState(1);
-  const [editing, setEditing] = useState(false);
-  const [inputVal, setInputVal] = useState("");
 
   const filtered = filter === "All" ? photos : photos.filter((p) => p.cat === filter);
   const totalPages = Math.ceil(filtered.length / PER_PAGE);
@@ -73,59 +71,8 @@ function Gallery({ theme }) {
             ← Prev
           </span>
 
-          {editing ? (
-            <input
-              autoFocus
-              type="number"
-              inputMode="numeric"
-              pattern="[0-9]*"
-              value={inputVal}
-              onChange={(e) => setInputVal(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  const num = parseInt(inputVal);
-                  if (num >= 1 && num <= totalPages) {
-                    setPage(num);
-                    window.scrollTo(0, 0);
-                  }
-                  setEditing(false);
-                  e.target.blur();
-                }
-                if (e.key === "Escape") { setEditing(false); e.target.blur(); }
-              }}
-              onBlur={() => {
-                const num = parseInt(inputVal);
-                if (num >= 1 && num <= totalPages) {
-                  setPage(num);
-                  window.scrollTo(0, 0);
-                }
-                setEditing(false);
-              }}
-              style={{
-                width: 48,
-                textAlign: "center",
-                fontSize: 16,
-                fontFamily: serif,
-                color: theme.text,
-                background: theme.toggle,
-                border: "none",
-                borderRadius: 6,
-                padding: "6px 4px",
-                outline: "none",
-                appearance: "none",
-                MozAppearance: "textfield",
-              }}
-            />
-          ) : (
-            <span
-              onClick={() => { setEditing(true); setInputVal(String(page)); }}
-              style={{ fontSize: 15, color: theme.muted, cursor: "pointer" }}
-            >
-              {page}
-            </span>
-          )}
           <span style={{ fontSize: 15, color: theme.muted }}>
-            of {totalPages}
+            {page} of {totalPages}
           </span>
 
           <span

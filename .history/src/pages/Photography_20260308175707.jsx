@@ -4,7 +4,7 @@ import { serif } from "../theme";
 import photos from "../data/photos";
 import PhotoCard from "../components/PhotoCard";
 
-const categories = ["All", ...[...new Set(photos.map((p) => p.cat))].sort()];
+const categories = ["All", ...new Set(photos.map((p) => p.cat))];
 const PER_PAGE = 12;
 
 function Gallery({ theme }) {

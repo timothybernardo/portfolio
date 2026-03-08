@@ -4,7 +4,7 @@ import { serif } from "../theme";
 import photos from "../data/photos";
 import PhotoCard from "../components/PhotoCard";
 
-const categories = ["All", ...[...new Set(photos.map((p) => p.cat))].sort()];
+const categories = ["All", ...new Set(photos.map((p) => p.cat))];
 const PER_PAGE = 12;
 
 function Gallery({ theme }) {
@@ -76,9 +76,6 @@ function Gallery({ theme }) {
           {editing ? (
             <input
               autoFocus
-              type="number"
-              inputMode="numeric"
-              pattern="[0-9]*"
               value={inputVal}
               onChange={(e) => setInputVal(e.target.value)}
               onKeyDown={(e) => {
@@ -89,31 +86,21 @@ function Gallery({ theme }) {
                     window.scrollTo(0, 0);
                   }
                   setEditing(false);
-                  e.target.blur();
                 }
-                if (e.key === "Escape") { setEditing(false); e.target.blur(); }
+                if (e.key === "Escape") setEditing(false);
               }}
-              onBlur={() => {
-                const num = parseInt(inputVal);
-                if (num >= 1 && num <= totalPages) {
-                  setPage(num);
-                  window.scrollTo(0, 0);
-                }
-                setEditing(false);
-              }}
+              onBlur={() => setEditing(false)}
               style={{
-                width: 48,
+                width: 40,
                 textAlign: "center",
-                fontSize: 16,
+                fontSize: 15,
                 fontFamily: serif,
                 color: theme.text,
                 background: theme.toggle,
                 border: "none",
-                borderRadius: 6,
-                padding: "6px 4px",
+                borderRadius: 4,
+                padding: "2px 4px",
                 outline: "none",
-                appearance: "none",
-                MozAppearance: "textfield",
               }}
             />
           ) : (

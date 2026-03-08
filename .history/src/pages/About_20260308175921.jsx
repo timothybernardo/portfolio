@@ -33,10 +33,8 @@ export default function About({ theme }) {
         </div>
       ))}
 
-      <div style={{ borderBottom: `1px solid ${theme.border}`, marginTop: 20, marginBottom: 52 }} />
-
       {/* Education */}
-      <h3 style={{ fontSize: 13, fontWeight: 500, textTransform: "uppercase", letterSpacing: "2px", color: theme.faint, marginBottom: 28 }}>
+      <h3 style={{ fontSize: 13, fontWeight: 500, textTransform: "uppercase", letterSpacing: "2px", color: theme.faint, marginBottom: 28, marginTop: 52 }}>
         Education
       </h3>
       {education.map((ed, i) => (
@@ -52,28 +50,21 @@ export default function About({ theme }) {
         </div>
       ))}
 
-      <div style={{ borderBottom: `1px solid ${theme.border}`, marginTop: 32, marginBottom: 52 }} />
-
       {/* Coursework */}
-      <h3 style={{ fontSize: 13, fontWeight: 500, textTransform: "uppercase", letterSpacing: "2px", color: theme.faint, marginBottom: 16 }}>
+      <h3 style={{ fontSize: 13, fontWeight: 500, textTransform: "uppercase", letterSpacing: "2px", color: theme.faint, marginBottom: 16, marginTop: 52 }}>
         Relevant Coursework
       </h3>
       <p style={{ fontSize: 17, color: theme.sub, lineHeight: 2 }}>
         {courses.join("  ·  ")}
       </p>
 
-      <div style={{ borderBottom: `1px solid ${theme.border}`, marginTop: 32, marginBottom: 52 }} />
-
       {/* Skills */}
-      <h3 style={{ fontSize: 13, fontWeight: 500, textTransform: "uppercase", letterSpacing: "2px", color: theme.faint, marginBottom: 24 }}>
+      <h3 style={{ fontSize: 13, fontWeight: 500, textTransform: "uppercase", letterSpacing: "2px", color: theme.faint, marginBottom: 16, marginTop: 52 }}>
         Skills
       </h3>
-      {skills.map((group, i) => (
-        <p key={i} style={{ fontSize: 17, color: theme.sub, lineHeight: 1.9, marginBottom: 12 }}>
-          <span style={{ fontWeight: 500 }}>{group.label}:</span>{" "}
-          {group.items.join("  ·  ")}
-        </p>
-      ))}
+      <p style={{ fontSize: 17, color: theme.sub, lineHeight: 2 }}>
+        {skills.join("  ·  ")}
+      </p>
     </div>
   );
 }
