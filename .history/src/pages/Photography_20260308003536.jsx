@@ -24,11 +24,8 @@ function Gallery({ theme }) {
       <h2 style={{ fontSize: 32, fontWeight: 500, letterSpacing: "-0.3px", marginBottom: 4 }}>
         Photography
       </h2>
-      <p style={{ fontSize: 18, color: theme.muted, marginBottom: 0, fontStyle: "italic" }}>
-        Shot on Konica C35 AF & Minolta AF Tele. 
-      </p>
       <p style={{ fontSize: 18, color: theme.muted, marginBottom: 28, fontStyle: "italic" }}>
-         Film Stocks include Portra 400 and Ultramax 400.
+        Shot on Konica C35 AF · 35mm film
       </p>
       <div style={{ display: "flex", gap: 10, marginBottom: 32, flexWrap: "wrap" }}>
         {categories.map((cat) => (
@@ -57,6 +54,7 @@ function Gallery({ theme }) {
         ))}
       </div>
 
+      {/* Page controls */}
       {totalPages > 1 && (
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 16, marginTop: 40 }}>
           <span
@@ -136,6 +134,9 @@ function PhotoDetail({ theme }) {
       />
       <h2 style={{ fontSize: 26, fontWeight: 500, marginBottom: 4 }}>{photo.title}</h2>
       <p style={{ fontSize: 15, color: theme.muted, marginBottom: 4 }}>{photo.cat}</p>
+      <p style={{ fontSize: 16, color: theme.muted, fontStyle: "italic" }}>
+        Konica C35 AF · Hexanon 38mm f/2.8 · 35mm film
+      </p>
     </div>
   );
 }
