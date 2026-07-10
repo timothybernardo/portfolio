@@ -3,7 +3,7 @@ export const experience = [
     role: "Software Engineer Co-op",
     place: "Chewy",
     period: "Jun 2026 – Dec 2026",
-    desc: "Incoming software engineer co-op.",
+    desc: "I am currently on the UX Engineering (UXE) team helping the integration of artificial intelligence tools that use Chewy's component library to streamline the workflow between developers and designers.",
   },
   {
     role: "Husky Ambassador",
