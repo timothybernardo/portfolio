@@ -9,7 +9,7 @@ export default function Clock({ color }) {
   }, []);
 
   return (
-    <span style={{ color }}>
+    <span style={{ color }} aria-hidden="true">
       {time.toLocaleTimeString("en-US", {
         hour: "2-digit",
         minute: "2-digit",

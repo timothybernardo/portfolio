@@ -3,7 +3,7 @@ export const experience = [
     role: "Software Engineer Co-op",
     place: "Chewy",
     period: "Jun 2026 – Dec 2026",
-    desc: "I am currently on the UX Engineering (UXE) team helping the integration of artificial intelligence tools that use Chewy's component library to streamline the workflow between developers and designers.",
+    desc: "I am currently on the UX Engineering (UXE) and Accessibility teams, working on internal tools for both that involve MCP servers/plugins, manual auditing, and Chewy's component library.",
   },
   {
     role: "Husky Ambassador",
@@ -24,7 +24,7 @@ export const education = [
     school: "Northeastern University",
     degree: "B.S. Computer Science — Khoury College",
     period: "Sept 2024 – May 2028",
-    detail: "GPA: 4.0/4.0 · Dean's List · John Martinson Honors Program",
+    detail: "GPA: 3.98/4.0 · Dean's List · John Martinson Honors Program",
   },
 ];
 
@@ -32,7 +32,7 @@ export const skills = [
   { label: "Languages", items: ["Java", "Python", "Kotlin", "C", "JavaScript"] },
   { label: "Frameworks & Libraries", items: ["React", "CSS", "Supabase", "JUnit", "NumPy", "Matplotlib"] },
   { label: "APIs & Platforms", items: ["Claude API", "Gemini API", "OpenAI API", "Spotify API", "Groq API"] },
-  { label: "Developer Tools", items: ["Git/GitHub", "IntelliJ IDEA", "VS Code"] },
+  { label: "Developer Tools", items: ["Git/GitHub", "IntelliJ IDEA", "VS Code", "Jenkins Pipelines", "JFrog", "Chromatic", "Atlassian"] },
 ];
 
 export const courses = [

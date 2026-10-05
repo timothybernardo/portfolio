@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { themes, serif } from "./theme";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -25,6 +25,26 @@ export default function App() {
     localStorage.setItem("theme", dark ? "dark" : "light");
   }, [dark]);
 
+  // Expose theme-dependent colors to CSS (focus ring, skip link)
+  document.documentElement.style.setProperty("--focus", theme.focus);
+  document.documentElement.style.setProperty("--skip-bg", theme.text);
+  document.documentElement.style.setProperty("--skip-fg", theme.bg);
+
+  // On route change: update the page title and move focus to <main> so
+  // screen readers announce the new page instead of staying on the old link.
+  const { pathname } = useLocation();
+  const mainRef = useRef(null);
+  const firstRender = useRef(true);
+  useEffect(() => {
+    const names = { "/": "Home", "/about": "About", "/projects": "Projects" };
+    const name = pathname.startsWith("/photography")
+      ? pathname === "/photography" ? "Photography" : "Photo"
+      : names[pathname] || "Page not found";
+    document.title = name === "Home" ? "Timothy Bernardo" : `${name} — Timothy Bernardo`;
+    if (firstRender.current) { firstRender.current = false; return; }
+    mainRef.current?.focus({ preventScroll: true });
+  }, [pathname]);
+
   return (
     <div
       style={{
@@ -37,9 +57,10 @@ export default function App() {
         transition: "background 0.3s, color 0.3s",
       }}
     >
+      <a href="#main" className="skip-link">Skip to main content</a>
       <Header theme={theme} isDark={dark} onToggle={() => setDark(!dark)} />
 
-      <main style={{ maxWidth: 680, width: "100%", margin: "0 auto", padding: "0 24px 100px", flex: 1 }}>
+      <main id="main" ref={mainRef} tabIndex={-1} style={{ maxWidth: 680, width: "100%", margin: "0 auto", padding: "0 24px 100px", flex: 1 }}>
         <Routes>
           <Route path="/" element={<Home theme={theme} />} />
           <Route path="/about" element={<About theme={theme} />} />

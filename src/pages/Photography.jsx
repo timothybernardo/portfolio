@@ -36,16 +36,18 @@ function Gallery({ theme }) {
         Photography
       </h2>
       <p style={{ fontSize: 18, color: theme.muted, marginBottom: 0, fontStyle: "italic" }}>
-        Shot on Konica C35 AF & Minolta AF Tele. 
+        Shot on Konica C35 AF, Minolta AF Tele, and Konica Minolta Zoom 160c Date.
       </p>
       <p style={{ fontSize: 18, color: theme.muted, marginBottom: 28, fontStyle: "italic" }}>
-         Film Stocks include Portra 400 and Ultramax 400.
+         Film Stocks include Portra 400, Fuji 200, Ultramax 400.
       </p>
-      <div style={{ display: "flex", gap: 10, marginBottom: 32, flexWrap: "wrap" }}>
+      <div role="group" aria-label="Filter photos by location" style={{ display: "flex", gap: 10, marginBottom: 32, flexWrap: "wrap" }}>
         {categories.map((cat) => (
-          <span
+          <button
+            type="button"
             key={cat}
             onClick={() => changeFilter(cat)}
+            aria-pressed={filter === cat}
             style={{
               fontFamily: serif,
               fontSize: 14,
@@ -58,9 +60,13 @@ function Gallery({ theme }) {
             }}
           >
             {cat}
-          </span>
+          </button>
         ))}
       </div>
+
+      <p className="sr-only" role="status" aria-live="polite">
+        Showing {filtered.length} {filter === "All" ? "" : `${filter} `}photos, page {page} of {totalPages}.
+      </p>
 
       <div style={{ columnCount: 2, columnGap: 20 }}>
         {visible.map((p) => (
@@ -69,9 +75,12 @@ function Gallery({ theme }) {
       </div>
 
       {totalPages > 1 && (
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 24, marginTop: 40 }}>
-          <span
-            onClick={() => { if (page > 1) { setPage(page - 1); window.scrollTo(0, 0); } }}
+        <nav aria-label="Photo pages" style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 24, marginTop: 40 }}>
+          <button
+            type="button"
+            onClick={() => { setPage(page - 1); window.scrollTo(0, 0); }}
+            disabled={page <= 1}
+            aria-label="Previous page"
             style={{
               fontSize: 16,
               padding: "8px 16px",
@@ -79,13 +88,14 @@ function Gallery({ theme }) {
               cursor: page > 1 ? "pointer" : "default",
             }}
           >
-            ← Prev
-          </span>
+            <span aria-hidden="true">← </span>Prev
+          </button>
 
           {editing ? (
             <input
               autoFocus
               type="number"
+              aria-label={`Go to page, 1 to ${totalPages}`}
               inputMode="numeric"
               pattern="[0-9]*"
               value={inputVal}
@@ -126,19 +136,24 @@ function Gallery({ theme }) {
               }}
             />
           ) : (
-            <span
+            <button
+              type="button"
               onClick={() => { setEditing(true); setInputVal(String(page)); }}
+              aria-label={`Page ${page} of ${totalPages}. Activate to jump to a page`}
               style={{ fontSize: 15, color: theme.muted, cursor: "pointer" }}
             >
               {page}
-            </span>
+            </button>
           )}
-          <span style={{ fontSize: 15, color: theme.muted }}>
+          <span aria-hidden="true" style={{ fontSize: 15, color: theme.muted }}>
             of {totalPages}
           </span>
 
-          <span
-            onClick={() => { if (page < totalPages) { setPage(page + 1); window.scrollTo(0, 0); } }}
+          <button
+            type="button"
+            onClick={() => { setPage(page + 1); window.scrollTo(0, 0); }}
+            disabled={page >= totalPages}
+            aria-label="Next page"
             style={{
               fontSize: 16,
               padding: "8px 16px",
@@ -146,9 +161,9 @@ function Gallery({ theme }) {
               cursor: page < totalPages ? "pointer" : "default",
             }}
           >
-            Next →
-          </span>
-        </div>
+            Next<span aria-hidden="true"> →</span>
+          </button>
+        </nav>
       )}
     </div>
   );
@@ -163,15 +178,17 @@ function PhotoDetail({ theme }) {
 
   return (
     <div style={{ marginTop: 56, fontFamily: serif }}>
-      <span
+      <button
+        type="button"
         onClick={() => navigate(-1)}
-        style={{ fontSize: 15, color: theme.muted, cursor: "pointer", display: "inline-block", marginBottom: 24 }}
+        aria-label="Back to gallery"
+        style={{ fontSize: 15, color: theme.muted, cursor: "pointer", display: "inline-block", marginBottom: 24, fontFamily: serif }}
       >
-        ← Back
-      </span>
+        <span aria-hidden="true">← </span>Back
+      </button>
       <img
         src={photo.full}
-        alt={photo.title}
+        alt={`${photo.title} — film photograph, ${photo.cat}`}
         style={{
           width: "100%",
           borderRadius: 3,

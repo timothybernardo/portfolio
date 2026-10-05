@@ -1,19 +1,19 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { serif } from "../theme";
 
 export default function PhotoCard({ photo, theme }) {
-  const navigate = useNavigate();
   const [loaded, setLoaded] = useState(false);
 
   return (
-    <div
-      onClick={() => navigate(`/photography/${photo.id}`)}
-      style={{ breakInside: "avoid", marginBottom: 24, cursor: "pointer" }}
+    <Link
+      to={`/photography/${photo.id}`}
+      aria-label={`${photo.title}, ${photo.cat}. View photo`}
+      style={{ display: "block", breakInside: "avoid", marginBottom: 24 }}
     >
       <img
         src={photo.thumb}
-        alt={photo.title}
+        alt={`${photo.title} — film photograph, ${photo.cat}`}
         loading="lazy"
         onLoad={() => setLoaded(true)}
         style={{
@@ -32,6 +32,6 @@ export default function PhotoCard({ photo, theme }) {
       <p style={{ margin: 0, fontFamily: serif, fontSize: 14, color: theme.muted }}>
         {photo.cat}
       </p>
-    </div>
+    </Link>
   );
 }

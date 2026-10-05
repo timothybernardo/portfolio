@@ -30,6 +30,60 @@ a {
   color: inherit;
 }
 
+/* Visible keyboard focus (color comes from the theme via --focus) */
+:focus-visible {
+  outline: 3px solid var(--focus, #0b57d0);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -100px;
+  padding: 10px 16px;
+  background: var(--skip-bg, #111);
+  color: var(--skip-fg, #fff);
+  border-radius: 6px;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+main:focus {
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
 @media (max-width: 600px) {
   .desktop-nav {
     display: none !important;

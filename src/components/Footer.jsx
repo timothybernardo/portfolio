@@ -17,7 +17,7 @@ export default function Footer({ theme }) {
         fontFamily: serif,
       }}
     >
-      <span>&copy; 2026</span>
+      <span>&copy; 2026 Timothy Bernardo</span>
       <Clock color={theme.faint} />
     </footer>
   );

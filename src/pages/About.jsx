@@ -9,10 +9,10 @@ export default function About({ theme }) {
       </h2>
       <p style={{ fontSize: 19, color: theme.sub, lineHeight: 1.85, maxWidth: 560, marginBottom: 12 }}>
         I'm a Computer Science student at Northeastern's Khoury College from Jersey City, New Jersey.
-        I am concentrating in artificial intelligence, software design, and the ethical side of AI in the real world.
+        I am concentrating in artificial intelligence and software design. I like delving into the ethical side of AI in the real world.
       </p>
       <p style={{ fontSize: 19, color: theme.sub, lineHeight: 1.85, maxWidth: 560, marginBottom: 56 }}>
-        Outside of code, I shoot film, enjoy traveling,
+        Outside of code, I shoot film, enjoy traveling, rock-climb with friends,
         collect vinyl records, read fiction novels, and thrift second-hand clothing.
       </p>
 

@@ -25,7 +25,8 @@ export default function Projects({ theme }) {
                 href={p.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ color: theme.text }}
+                aria-label={`${p.title} (opens in a new tab)`}
+                style={{ color: theme.text, textDecoration: "underline", textUnderlineOffset: 4 }}
               >
                 {p.title}
               </a>

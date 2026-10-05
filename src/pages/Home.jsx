@@ -12,7 +12,7 @@ export default function Home({ theme }) {
     <div style={{ marginTop: 100, fontFamily: serif }}>
       <img
         src="/images/headshot.jpg"
-        alt="Timothy Bernardo"
+        alt="Portrait of Timothy Bernardo"
         style={{
           width: 200,
           height: 200,
@@ -39,23 +39,24 @@ export default function Home({ theme }) {
         Computer Science student at Northeastern University's Khoury College. From Jersey City, now in Boston.
       </p>
       <p style={{ fontSize: 20, color: theme.sub, lineHeight: 1.75, maxWidth: 480, marginBottom: 44 }}>
-        Passionate about AI, software design, and film photography with point and shoots.
+        Check out the following links!
       </p>
-      <div style={{ display: "flex", gap: 24 }}>
+      <nav aria-label="Social links" style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
         {links.map(({ label, href }, i) => (
           <a
             key={i}
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            style={{ fontSize: 16, color: theme.muted, transition: "color 0.15s" }}
+            aria-label={`${label} (opens in a new tab)`}
+            style={{ fontSize: 16, textDecoration: "underline", textUnderlineOffset: 4, color: theme.muted, transition: "color 0.15s" }}
             onMouseEnter={(e) => (e.currentTarget.style.color = theme.text)}
             onMouseLeave={(e) => (e.currentTarget.style.color = theme.muted)}
           >
             {label}
           </a>
         ))}
-      </div>
+      </nav>
     </div>
   );
 }
